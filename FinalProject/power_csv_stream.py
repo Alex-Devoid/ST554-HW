@@ -16,8 +16,11 @@ stream_pdf = pd.read_csv(STREAM_SOURCE)
 # write 20 CSV batches of five sampled rows
 for i in range(1, 21):
     sample_pdf = stream_pdf.sample(
+        # sample 5 rows
         n=5,
+        # doing so without replacement
         replace=False,
+        # use a seed for reproducibility
         random_state=123 + i,
     )
     output_path = STREAM_OUTPUT_DIR / f"chunk_{i}.csv"
